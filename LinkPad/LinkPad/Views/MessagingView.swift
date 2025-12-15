@@ -1,5 +1,12 @@
 import SwiftUI
 
+// NOTE: This is a demo implementation of the messaging UI.
+// In a production app, you would:
+// 1. Pass a specific recipient's ID to this view
+// 2. Fetch messages from Firestore in real-time
+// 3. Save new messages to Firestore
+// 4. Implement proper message threading and conversations
+
 struct MessagingView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -83,12 +90,16 @@ struct MessagingView: View {
     private func sendMessage() {
         guard !newMessageContent.isEmpty, let currentUser = authViewModel.currentUser else { return }
         
+        // NOTE: In production, receiverId should be passed to this view
+        // and messages should be saved to Firestore
         let message = Message(
             senderId: currentUser.id ?? "",
-            receiverId: "placeholder",
+            receiverId: "placeholder", // TODO: Replace with actual recipient ID
             content: newMessageContent
         )
         
+        // TODO: Save to Firestore instead of local array
+        // Example: FirestoreService.shared.saveMessage(message)
         messages.append(message)
         newMessageContent = ""
     }

@@ -18,7 +18,13 @@ class AuthService {
             displayName: displayName
         )
         
-        try db.collection("users").document(authResult.user.uid).setData(from: user)
+        do {
+            try db.collection("users").document(authResult.user.uid).setData(from: user)
+        } catch {
+            // Rollback: delete the auth user if Firestore write fails
+            try? await authResult.user.delete()
+            throw error
+        }
         
         return user
     }

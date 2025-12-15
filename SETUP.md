@@ -11,9 +11,11 @@ This guide will help you set up the LinkPad iOS app for development.
 ## Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/owenmash19/linkpad-sandpit.git
+git clone <YOUR_REPOSITORY_URL>
 cd linkpad-sandpit
 ```
+
+Replace `<YOUR_REPOSITORY_URL>` with the actual URL of your repository.
 
 ## Step 2: Firebase Project Setup
 
